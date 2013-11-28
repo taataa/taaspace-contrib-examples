@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Taaspace Example / Basic Usage</title>
+  <title>Sliding Puzzle</title>
   
   <!-- Disable user scalability to override native touch gestures. -->
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
@@ -44,7 +44,7 @@
     var space = Taaspace.create();
     var vp = space.createViewport('#space');
     
-    var wheelText = space.createText('Tap the elements')
+    var wheelText = space.createText('Tap to move')
       .size(22, 10) // Size of text block in the space.
       .fontSize(4) // Size of the font in the space
       .moveBy(0, 0); // Position of the text in the space. Default is (0, 0)
