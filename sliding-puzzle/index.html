@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Taaspace Example / Basic Usage</title>
+  
+  <!-- Disable user scalability to override native touch gestures. -->
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  
+  <style>
+    html, body, .space {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    body {
+      font-size: 16px;
+      background: #222;
+      font-family: sans-serif;
+      color: white;
+    }
+    
+    p {
+      padding: 0px;
+      margin: 0px;
+    }
+    
+    img {
+      box-shadow: 0px 0px 15px #050505;
+      padding: 0px;
+      margin: 0px;
+    }
+  </style>
+</head>
+<body>
+  <div id="space" class="space"></div>
+  
+  <script src="../taaspace-standalone-0.0.3.js"></script>
+  
+  <script>
+  (function () {
+    var space = Taaspace.create();
+    var vp = space.createViewport('#space');
+    
+    var wheelText = space.createText('Tap the elements')
+      .size(22, 10) // Size of text block in the space.
+      .fontSize(4) // Size of the font in the space
+      .moveBy(0, 0); // Position of the text in the space. Default is (0, 0)
+    
+    
+    // s | b
+    // --+--
+    // c | -
+    
+    var s = space.createImage('assets/spiral-256x256.jpg')
+      .size(10, 10)
+      .moveBy(0, 10);
+    
+    var b = space.createImage('assets/blackletter-256x256.jpg')
+      .size(10, 10)
+      .moveBy(12, 10);
+      
+    var c = space.createImage('assets/rosette-256x256.jpg')
+      .size(10, 10)
+      .moveBy(0, 22);
+    
+    
+    // Selected viewports and elements receive keyboard events.
+    space.select(vp);
+    
+    // By default, scale the viewport so that all the elements in
+    // the space are visible.
+    vp.focusTo(space.box());
+    
+    
+    var animOptions = {
+      ease: 'snap'
+    };
+    
+    // Empty slot
+    var empty = {};
+    
+    //  cellxy
+    var cell00 = { nadir: s };
+    var cell10 = { nadir: b };
+    var cell01 = { nadir: c };
+    var cell11 = { nadir: empty };
+    
+    cell00.north = null;
+    cell00.west = null;
+    cell00.east = cell10;
+    cell00.south = cell01;
+    
+    cell10.north = null;
+    cell10.west = cell00;
+    cell10.east = null;
+    cell10.south = cell11;
+    
+    cell01.north = cell00;
+    cell01.west = null;
+    cell01.east = cell11;
+    cell01.south = null;
+    
+    cell11.north = cell10;
+    cell11.west = cell01;
+    cell11.east = null;
+    cell11.south = null;
+    
+    s.$cell = cell00;
+    b.$cell = cell10;
+    c.$cell = cell01;
+    empty.$cell = cell11;
+    
+    
+    var move = {
+      north: function (el) {
+        el.moveBy(0, -12, animOptions);
+      },
+      west: function (el) {
+        el.moveBy(-12, 0, animOptions);
+      },
+      east: function (el) {
+        el.moveBy(12, 0, animOptions);
+      },
+      south: function (el) {
+        el.moveBy(0, 12, animOptions);
+      }
+    };
+    
+    var swap = function (el) {
+      var temp$cell, dirCell;
+      for (dir in el.$cell) {
+        if (el.$cell.hasOwnProperty(dir) && dir !== 'nadir') {
+          dirCell = el.$cell[dir];
+          if (dirCell !== null && dirCell.nadir === empty) {
+            // Swap cells
+            temp$cell = empty.$cell;
+            empty.$cell = el.$cell;
+            el.$cell = temp$cell;
+            // Update nadirs
+            empty.$cell.nadir = empty;
+            el.$cell.nadir = el;
+            // Move
+            move[dir](el);
+            return;
+          }
+        }
+      }
+    };
+    
+    s.on('tap', function () {
+      swap(s);
+    });
+    b.on('tap', function () {
+      swap(b);
+    });
+    c.on('tap', function () {
+      swap(c);
+    });
+  }());
+  </script>
+</body>
+</html>
