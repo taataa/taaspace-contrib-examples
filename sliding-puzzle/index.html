@@ -37,38 +37,45 @@
 <body>
   <div id="space" class="space"></div>
   
-  <script src="../taaspace-standalone-0.0.3.js"></script>
+  <script src="../taaspace-standalone-0.0.4.js"></script>
   
   <script>
   (function () {
     var space = Taaspace.create();
     var vp = space.createViewport('#space');
     
-    var wheelText = space.createText('Tap to move')
-      .size(22, 10) // Size of text block in the space.
-      .fontSize(4) // Size of the font in the space
-      .moveBy(0, 0); // Position of the text in the space. Default is (0, 0)
+    //var wheelText = space.createText('Tap to solve')
+    //  .size(22, 10) // Size of text block in the space.
+    //  .fontSize(4) // Size of the font in the space
+    //  .moveBy(0, 0); // Position of the text in the space. Default is (0, 0)
     
+    // Initial position
+    // r11 | r01
+    // ----+----
+    // r10 |  x
     
-    // s | b
-    // --+--
-    // c | -
+    // Solved position
+    // r00 | r10
+    // ----+----
+    // r01 | r11
     
-    var s = space.createImage('assets/spiral-256x256.jpg')
-      .size(10, 10)
-      .moveBy(0, 10);
+    var r00 = function () {
+      return space.createImage('assets/rosette00-256x256.jpg')
+        .size(10, 10)
+        .moveBy(0, 10);
+    };
     
-    var b = space.createImage('assets/blackletter-256x256.jpg')
-      .size(10, 10)
-      .moveBy(12, 10);
-      
-    var c = space.createImage('assets/rosette-256x256.jpg')
+    var r10 = space.createImage('assets/rosette10-256x256.jpg')
       .size(10, 10)
       .moveBy(0, 22);
+      
+    var r01 = space.createImage('assets/rosette01-256x256.jpg')
+      .size(10, 10)
+      .moveBy(12, 10);
     
-    
-    // Selected viewports and elements receive keyboard events.
-    space.select(vp);
+    var r11 = space.createImage('assets/rosette11-256x256.jpg')
+      .size(10, 10)
+      .moveBy(0, 10);
     
     // By default, scale the viewport so that all the elements in
     // the space are visible.
@@ -83,9 +90,9 @@
     var empty = {};
     
     //  cellxy
-    var cell00 = { nadir: s };
-    var cell10 = { nadir: b };
-    var cell01 = { nadir: c };
+    var cell00 = { nadir: r11 };
+    var cell10 = { nadir: r01 };
+    var cell01 = { nadir: r10 };
     var cell11 = { nadir: empty };
     
     cell00.north = null;
@@ -108,28 +115,53 @@
     cell11.east = null;
     cell11.south = null;
     
-    s.$cell = cell00;
-    b.$cell = cell10;
-    c.$cell = cell01;
+    r11.$cell = cell00;
+    r01.$cell = cell10;
+    r10.$cell = cell01;
     empty.$cell = cell11;
     
     
     var move = {
-      north: function (el) {
+      north: function (el, cb) {
+        animOptions.end = cb;
         el.moveBy(0, -12, animOptions);
       },
-      west: function (el) {
+      west: function (el, cb) {
+        animOptions.end = cb;
         el.moveBy(-12, 0, animOptions);
       },
-      east: function (el) {
+      east: function (el, cb) {
+        animOptions.end = cb;
         el.moveBy(12, 0, animOptions);
       },
-      south: function (el) {
+      south: function (el, cb) {
+        animOptions.end = cb;
         el.moveBy(0, 12, animOptions);
       }
     };
     
+    var solver = {
+      solved: false,
+      check: function () {
+        if (!this.solved &&
+            cell00.nadir === empty &&
+            cell10.nadir === r10 &&
+            cell01.nadir === r01 &&
+            cell11.nadir === r11) {
+          this.solved = true;
+          r00 = r00();
+          r00.moveBy(1, 1, animOptions);
+          r10.moveBy(-1, 1, animOptions);
+          r01.moveBy(1, -1, animOptions);
+          r11.moveBy(-1, -1, animOptions);
+        }
+      }
+    };
+    
     var swap = function (el) {
+      if (solver.solved) {
+        return;
+      }
       var temp$cell, dirCell;
       for (dir in el.$cell) {
         if (el.$cell.hasOwnProperty(dir) && dir !== 'nadir') {
@@ -143,21 +175,24 @@
             empty.$cell.nadir = empty;
             el.$cell.nadir = el;
             // Move
-            move[dir](el);
+            move[dir](el, function () {
+              // After move, check if solved.
+              solver.check();
+            });
             return;
           }
         }
       }
     };
     
-    s.on('tap', function () {
-      swap(s);
+    r10.on('tap', function () {
+      swap(r10);
     });
-    b.on('tap', function () {
-      swap(b);
+    r01.on('tap', function () {
+      swap(r01);
     });
-    c.on('tap', function () {
-      swap(c);
+    r11.on('tap', function () {
+      swap(r11);
     });
   }());
   </script>
