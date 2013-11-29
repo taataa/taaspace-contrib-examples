@@ -1,0 +1,372 @@
+<!---Photographs &copy; Johanna Issakainen 2013. All rights reserved. -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Taaspace Example / Gran Turismo</title>
+    <link rel="icon" type="image/png"href="../../solja/src/server/solja/solja/static/solja/images/favicon%20.png">
+    
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    
+    <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
+    <style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    body {
+        font-size: 16px;
+        background: #222;
+        font-family: sans-serif;
+        color: white;
+    }
+    
+    .container {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .meta {
+        display: none;
+    }
+    
+    .space {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    img {
+        box-shadow: 0px 0px 15px #050505;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="space" class="space"></div>
+
+        <div class="meta">
+            <div class="page-title">Taaspace.js - Gran turismo example</div>
+            <div class="page-description">Gran turismo example.</div>
+        </div>
+    </div>
+    <script src="../taaspace-standalone-0.0.4.js"></script>
+    
+    <script>
+
+      $(document).ready(function() {
+
+      var space = Taaspace.create();
+      var vp = space.createViewport('#space');
+
+		  //var world_text = space.createText('Photographs &copy; Johanna Issakainen 2013. All rights reserved.').size(10, 1).fontSize(10).moveBy(150, 8);
+      var world_text = space.createText('Maapallo').size(1000, 1000).fontSize(120).moveBy(180, 0);
+
+      var europe_text = space.createText('Eurooppa').size(250, 250).fontSize(46).moveBy(350, 200);
+      var finland_text = space.createText('Suomi').moveBy(350, 300).size(60, 60).fontSize(10);
+      var hungary_text = space.createText('Unkari').moveBy(350, 400).size(60, 60).fontSize(10);
+      var croatia_text = space.createText('Kroatia').moveBy(350, 500).size(60, 60).fontSize(10);
+      var turkey_text = space.createText('Turkki').moveBy(350, 600).size(60, 60).fontSize(10);
+      var kos_text = space.createText('Kos').moveBy(350, 700).size(60, 60).fontSize(10);
+
+
+      var asia_text = space.createText('Aasia').size(250, 250).fontSize(46).moveBy(600, 200);
+      var thailand_text = space.createText('Thaimaa').moveBy(600, 300).size(60, 60).fontSize(10);
+
+
+      var america_text = space.createText('Amerikka').size(250, 250).fontSize(46).moveBy(100, 200);
+      var cuba_text = space.createText('Kuuba').moveBy(100, 300).size(60, 60).fontSize(10);
+      var venezuela_text = space.createText('Venezuela').moveBy(100, 400).size(60, 60).fontSize(10);
+
+// America images
+      var venezuela_image_1 = space.createImage('gran_turismo_images/Venezuela/IMG_1826.JPG').size(13, 10).moveBy(100, 420);
+      var venezuela_image_2 = space.createImage('gran_turismo_images/Venezuela/IMG_1837.JPG').size(13, 10).moveBy(115, 420);
+      var venezuela_image_3 = space.createImage('gran_turismo_images/Venezuela/IMG_2015.JPG').size(13, 10).moveBy(130, 420);
+      var venezuela_image_4 = space.createImage('gran_turismo_images/Venezuela/P4080325.JPG').size(13, 10).moveBy(145, 420);
+      var venezuela_image_5 = space.createImage('gran_turismo_images/Venezuela/P4100519.JPG').size(13, 10).moveBy(160, 420);
+
+      var cuba_image_1 = space.createImage('gran_turismo_images/Kuuba/IMG_0359.JPG').size(13, 10).moveBy(100, 320);
+      var cuba_image_2 = space.createImage('gran_turismo_images/Kuuba/IMG_0368.JPG').size(13, 10).moveBy(115, 320);
+      var cuba_image_3 = space.createImage('gran_turismo_images/Kuuba/IMG_0455.JPG').size(13, 10).moveBy(130, 320);
+      var cuba_image_4 = space.createImage('gran_turismo_images/Kuuba/IMG_0457.JPG').size(13, 10).moveBy(145, 320);
+      var cuba_image_5 = space.createImage('gran_turismo_images/Kuuba/IMG_0642.JPG').size(13, 10).moveBy(160, 320);
+
+// Europe images       
+      var finland_image_1 = space.createImage('gran_turismo_images/Suomi/IMG_1550.JPG').size(13, 10).moveBy(350, 320);
+      var finland_image_2 = space.createImage('gran_turismo_images/Suomi/STP66921.JPG').size(13, 10).moveBy(365, 320);
+		var finland_image_3 = space.createImage('gran_turismo_images/Suomi/STP66940.JPG').size(13, 10).moveBy(380, 320);
+		var finland_image_4 = space.createImage('gran_turismo_images/Suomi/STP67215.JPG').size(13, 10).moveBy(395, 320);
+		var finland_image_5 = space.createImage('gran_turismo_images/Suomi/WP_000283.jpg').size(13, 10).moveBy(410, 320);
+		
+      var hungary_image_1 = space.createImage('gran_turismo_images/Unkari/STP68047.JPG').size(13, 10).moveBy(350, 420);
+      var hungary_image_2 = space.createImage('gran_turismo_images/Unkari/STP68059.JPG').size(13, 10).moveBy(365, 420);
+		var hungary_image_3 = space.createImage('gran_turismo_images/Unkari/STP68083.JPG').size(13, 10).moveBy(380, 420);
+		var hungary_image_4 = space.createImage('gran_turismo_images/Unkari/STP68093.JPG').size(13, 10).moveBy(395, 420);
+		var hungary_image_5 = space.createImage('gran_turismo_images/Unkari/STP68186.JPG').size(13, 10).moveBy(410, 420);
+		
+		var croatia_image_1 = space.createImage('gran_turismo_images/Kroatia/IMG_4681.JPG').size(13, 10).moveBy(350, 520);
+      var croatia_image_2 = space.createImage('gran_turismo_images/Kroatia/IMG_4696.JPG').size(13, 10).moveBy(365, 520);
+		var croatia_image_3 = space.createImage('gran_turismo_images/Kroatia/IMG_4762.JPG').size(13, 10).moveBy(380, 520);
+		var croatia_image_4 = space.createImage('gran_turismo_images/Kroatia/IMG_4862.JPG').size(13, 10).moveBy(395, 520);
+		var croatia_image_5 = space.createImage('gran_turismo_images/Kroatia/IMG_5157.JPG').size(13, 10).moveBy(410, 520);
+		
+		var turkey_image_1 = space.createImage('gran_turismo_images/Turkki/IMG_2703.JPG').size(13, 10).moveBy(350, 620);
+      var turkey_image_2 = space.createImage('gran_turismo_images/Turkki/IMG_2712.JPG').size(13, 10).moveBy(365, 620);
+		var turkey_image_3 = space.createImage('gran_turismo_images/Turkki/IMG_2729.JPG').size(13, 10).moveBy(380, 620);
+		var turkey_image_4 = space.createImage('gran_turismo_images/Turkki/IMG_2739.JPG').size(13, 10).moveBy(395, 620);
+		var turkey_image_5 = space.createImage('gran_turismo_images/Turkki/IMG_2750.JPG').size(13, 10).moveBy(410, 620);
+		
+		var kos_image_1 = space.createImage('gran_turismo_images/Kos/IMG_2508.JPG').size(13, 10).moveBy(350, 720);
+      var kos_image_2 = space.createImage('gran_turismo_images/Kos/IMG_2554.JPG').size(13, 10).moveBy(365, 720);
+		var kos_image_3 = space.createImage('gran_turismo_images/Kos/IMG_2559.JPG').size(13, 10).moveBy(380, 720);
+		var kos_image_4 = space.createImage('gran_turismo_images/Kos/IMG_2593.JPG').size(13, 10).moveBy(395, 720);
+		var kos_image_5 = space.createImage('gran_turismo_images/Kos/IMG_2652.JPG').size(13, 10).moveBy(410, 720);
+		
+// Asia images
+		var thailand_image_1 = space.createImage('gran_turismo_images/Thaimaa/IMG_0968.JPG').size(13, 10).moveBy(600, 320);
+      var thailand_image_2 = space.createImage('gran_turismo_images/Thaimaa/IMG_0977.JPG').size(13, 10).moveBy(615, 320);
+		var thailand_image_3 = space.createImage('gran_turismo_images/Thaimaa/IMG_0994.JPG').size(13, 10).moveBy(630, 320);
+		var thailand_image_4 = space.createImage('gran_turismo_images/Thaimaa/IMG_1012.JPG').size(13, 10).moveBy(645, 320);
+		var thailand_image_5 = space.createImage('gran_turismo_images/Thaimaa/IMG_1085.JPG').size(13, 10).moveBy(660, 320);
+	
+
+      vp.scalable().draggable();
+      space.select(vp);
+
+      vp.focusTo(space.box());
+      
+      vp.on('tap', function() {
+        vp.focusTo(space);
+      });
+
+      europe_text.on('tap', function(ev) {
+        vp.focusTo(europe_text);
+        ev.stopPropagation();
+      });
+
+      finland_text.on('tap', function(ev) {
+        vp.focusTo(finland_text);
+        ev.stopPropagation();
+      });
+      
+		finland_image_1.on('tap', function(ev) {
+        vp.focusTo(finland_image_1);
+        ev.stopPropagation();
+      });
+      finland_image_2.on('tap', function(ev) {
+        vp.focusTo(finland_image_2);
+        ev.stopPropagation();
+      });
+      finland_image_3.on('tap', function(ev) {
+        vp.focusTo(finland_image_3);
+        ev.stopPropagation();
+      });
+      finland_image_4.on('tap', function(ev) {
+        vp.focusTo(finland_image_4);
+        ev.stopPropagation();
+      });
+      finland_image_5.on('tap', function(ev) {
+        vp.focusTo(finland_image_5);
+        ev.stopPropagation();
+
+      });
+
+      hungary_text.on('tap', function(ev) {
+        vp.focusTo(hungary_text);
+        ev.stopPropagation();
+      });
+            hungary_image_1.on('tap', function(ev) {
+        vp.focusTo(hungary_image_1);
+        ev.stopPropagation();
+      });
+      hungary_image_2.on('tap', function(ev) {
+        vp.focusTo(hungary_image_2);
+        ev.stopPropagation();
+      });
+      hungary_image_3.on('tap', function(ev) {
+        vp.focusTo(hungary_image_3);
+        ev.stopPropagation();
+      });
+      hungary_image_4.on('tap', function(ev) {
+        vp.focusTo(hungary_image_4);
+        ev.stopPropagation();
+      });
+      hungary_image_5.on('tap', function(ev) {
+        vp.focusTo(hungary_image_5);
+        ev.stopPropagation();
+
+      });
+
+      croatia_text.on('tap', function(ev) {
+        vp.focusTo(croatia_text);
+        ev.stopPropagation();
+      });
+		croatia_image_1.on('tap', function(ev) {
+        vp.focusTo(croatia_image_1);
+        ev.stopPropagation();
+      });
+      croatia_image_2.on('tap', function(ev) {
+        vp.focusTo(croatia_image_2);
+        ev.stopPropagation();
+      });
+      croatia_image_3.on('tap', function(ev) {
+        vp.focusTo(croatia_image_3);
+        ev.stopPropagation();
+      });
+      croatia_image_4.on('tap', function(ev) {
+        vp.focusTo(croatia_image_4);
+        ev.stopPropagation();
+      });
+      croatia_image_5.on('tap', function(ev) {
+        vp.focusTo(croatia_image_5);
+        ev.stopPropagation();
+
+      });
+
+      turkey_text.on('tap', function(ev) {
+        vp.focusTo(turkey_text);
+        ev.stopPropagation();
+      });
+      turkey_image_1.on('tap', function(ev) {
+        vp.focusTo(turkey_image_1);
+        ev.stopPropagation();
+      });
+      turkey_image_2.on('tap', function(ev) {
+        vp.focusTo(turkey_image_2);
+        ev.stopPropagation();
+      });
+      turkey_image_3.on('tap', function(ev) {
+        vp.focusTo(turkey_image_3);
+        ev.stopPropagation();
+      });
+      turkey_image_4.on('tap', function(ev) {
+        vp.focusTo(turkey_image_4);
+        ev.stopPropagation();
+      });
+      turkey_image_5.on('tap', function(ev) {
+        vp.focusTo(turkey_image_5);
+        ev.stopPropagation();
+
+      });
+
+      kos_text.on('tap', function(ev) {
+        vp.focusTo(kos_text);
+        ev.stopPropagation();
+      });
+      kos_image_1.on('tap', function(ev) {
+        vp.focusTo(kos_image_1);
+        ev.stopPropagation();
+      });
+      kos_image_2.on('tap', function(ev) {
+        vp.focusTo(kos_image_2);
+        ev.stopPropagation();
+      });
+      kos_image_3.on('tap', function(ev) {
+        vp.focusTo(kos_image_3);
+        ev.stopPropagation();
+      });
+      kos_image_4.on('tap', function(ev) {
+        vp.focusTo(kos_image_4);
+        ev.stopPropagation();
+      });
+      kos_image_5.on('tap', function(ev) {
+        vp.focusTo(kos_image_5);
+        ev.stopPropagation();
+
+      });      
+      
+      asia_text.on('tap', function(ev) {
+        vp.focusTo(asia_text);
+        ev.stopPropagation();
+      });
+      thailand_text.on('tap', function(ev) {
+        vp.focusTo(thailand_text);
+        ev.stopPropagation();
+      });
+      thailand_image_1.on('tap', function(ev) {
+        vp.focusTo(thailand_image_1);
+        ev.stopPropagation();
+      });
+      thailand_image_2.on('tap', function(ev) {
+        vp.focusTo(thailand_image_2);
+        ev.stopPropagation();
+      });
+      thailand_image_3.on('tap', function(ev) {
+        vp.focusTo(thailand_image_3);
+        ev.stopPropagation();
+      });
+      thailand_image_4.on('tap', function(ev) {
+        vp.focusTo(thailand_image_4);
+        ev.stopPropagation();
+      });
+      thailand_image_5.on('tap', function(ev) {
+        vp.focusTo(thailand_image_5);
+        ev.stopPropagation();
+
+      });
+      america_text.on('tap', function(ev) {
+        vp.focusTo(america_text);
+        ev.stopPropagation();
+      });
+      venezuela_text.on('tap', function(ev) {
+        vp.focusTo(venezuela_text);
+        ev.stopPropagation();
+      });
+      venezuela_image_1.on('tap', function(ev) {
+        vp.focusTo(venezuela_image_1);
+        ev.stopPropagation();
+      });
+      venezuela_image_2.on('tap', function(ev) {
+        vp.focusTo(venezuela_image_2);
+        ev.stopPropagation();
+      });
+      venezuela_image_3.on('tap', function(ev) {
+        vp.focusTo(venezuela_image_3);
+        ev.stopPropagation();
+      });
+      venezuela_image_4.on('tap', function(ev) {
+        vp.focusTo(venezuela_image_4);
+        ev.stopPropagation();
+      });
+      venezuela_image_5.on('tap', function(ev) {
+        vp.focusTo(venezuela_image_5);
+        ev.stopPropagation();
+      });
+      cuba_text.on('tap', function(ev) {
+        vp.focusTo(cuba_text);
+        ev.stopPropagation();
+      });
+      cuba_image_1.on('tap', function(ev) {
+        vp.focusTo(cuba_image_1);
+        ev.stopPropagation();
+      });
+      cuba_image_2.on('tap', function(ev) {
+        vp.focusTo(cuba_image_2);
+        ev.stopPropagation();
+      });
+      cuba_image_3.on('tap', function(ev) {
+        vp.focusTo(cuba_image_3);
+        ev.stopPropagation();
+      });
+      cuba_image_4.on('tap', function(ev) {
+        vp.focusTo(cuba_image_4);
+        ev.stopPropagation();
+      });
+      cuba_image_5.on('tap', function(ev) {
+        vp.focusTo(cuba_image_5);
+        ev.stopPropagation();
+
+      });
+
+    });
+
+</script>
+
+</body>
+</html>  
