@@ -72,6 +72,9 @@
       taa.size( 10,10 );
       var side = Math.floor( Math.sqrt(71) );
       taa.moveBy( 10*(i % side), 10*(Math.floor(i/side)) );
+      taa.on('tap', function () {
+        taa.size(0,0);
+      });
     });
     
     
