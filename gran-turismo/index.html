@@ -65,7 +65,10 @@
       var space = Taaspace.create();
       var vp = space.createViewport('#space');
 
-		  //var world_text = space.createText('Photographs &copy; Johanna Issakainen 2013. All rights reserved.').size(10, 1).fontSize(10).moveBy(150, 8);
+      var licence = space.createText('Photographs &copy; Johanna Issakainen 2013.'+ 
+      'This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/'+
+      'by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.')
+        .size(10, 1).fontSize(10).moveBy(150, 8);
       var world_text = space.createText('Earth').size(1000, 1000).fontSize(120).moveBy(180, 0);
 
       var europe_text = space.createText('Europe').size(250, 250).fontSize(46).moveBy(350, 200);
