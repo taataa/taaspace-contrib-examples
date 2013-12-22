@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Taataa Taaspace Demo</title>
+  <title>Go</title>
   
   <!-- Disable user scalability to override native touch gestures. -->
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
@@ -17,7 +17,7 @@
     
     body {
       font-size: 16px;
-      background: #222;
+      background: url("assets/cardboard.jpg") repeat #121212;
       font-family: sans-serif;
       color: white;
     }
@@ -27,8 +27,16 @@
       margin: 0px;
     }
     
+    .stone {
+      box-shadow: 0px -1px 5px #050505;
+      /*border-radius: 15px;*/
+    }
+    
+    .board {
+      box-shadow: 0px -2px 20px #050505;
+    }
+    
     img {
-      /*box-shadow: 0px 0px 15px #050505;*/
       padding: 0px;
       margin: 0px;
     }
@@ -43,31 +51,53 @@
     var space = Taaspace.create('#space');
     var vp = space.getViewport();
     
-    var board = space.createImage('assets/board-800.png')
-      .size(12, 12);
+    var board = space.createImage('assets/oe-board-1265.jpg')
+      .size(12, 12)
+      .addClass('board');
+    
+    // Scale the viewport to the board. Give the size for
+    // the other objects.
+    vp.focusTo(space, 0.9);
     
     var blackStones = [];
     var whiteStones = [];
     var i, stone;
-    for (i = 0; i < 50; i += 1) {
+    
+    var makeRound = function () {
+      var that = this;
+      var setBorderRadius = function () {
+        var sizeInSpace = that.width();
+        var sizeInViewport = vp.translateDistanceFromSpace(sizeInSpace);
+        var radius = sizeInViewport / 2;
+        that.css('border-radius', radius);
+      };
+      setBorderRadius();
+    };
+    
+    for (i = 0; i < 84; i += 1) {
       stone = space.createImage('assets/black-stone-64.png')
-        .size(1, 1)
-        .moveTo(2, -2)
-        .movable();
+        .size(0.7, 0.7)
+        .moveTo(0.2 + 10.2*(i/84), 0.2)
+        .movable()
+        .addClass('stone')
+        .on('scaled', makeRound);
+      makeRound.call(stone);
       blackStones.push(stone);
     }
-    for (i = 0; i < 50; i += 1) {
+    
+    for (i = 0; i < 84; i += 1) {
       stone = space.createImage('assets/white-stone-64.png')
-        .size(1, 1)
-        .moveTo(10, 14)
-        .movable();
+        .size(0.7, 0.7)
+        .moveTo(11.1 - 10.2*(i/84), 11.2)
+        .movable()
+        .addClass('stone')
+        .on('scaled', makeRound);
+      makeRound.call(stone);
       whiteStones.push(stone);
     }
     
     
-    // By default, scale the viewport so that all the elements in
-    // the space are visible.
-    vp.focusTo(space, 0.8);
+    
     
   </script>
 </body>
