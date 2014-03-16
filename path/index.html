@@ -98,7 +98,7 @@
       taa.size( 10,10 );
       var side = Math.floor( Math.sqrt(71) );
       taa.moveBy(0, 10 * i);
-      taa.on('tap', function (ev) {
+      /*taa.on('tap', function (ev) {
         taa.pivot(taa.center()); // pivot is not scaled TODO BUG
         taa.scale(1.2);
         
@@ -114,7 +114,7 @@
       taa.on('hold', function (ev) {
         taa.pivot(taa.center()); // pivot is not scaled TODO BUG
         taa.scale(1/1.2);
-      });
+      });*/
     });
     
     
@@ -139,13 +139,15 @@
       cdist = Math.max(cdist, 0);
       var ratioFromCenter = cdist / half;
       
+      var easedRatio = Math.pow(ratioFromCenter, 0.5);
+
       // arc from nearest to tap
       var nearest = space.nearestElement(tapxy.x, tapxy.y);
       var nc = nearest.center();
       var ndx = tapxy.x - nc.x;
       var ndy = tapxy.y - nc.y;
 
-      vp.focusTo(nearest, 1 - ratioFromCenter * 0.9 - 0.05, animOptions);
+      vp.focusTo(nearest, 1 - easedRatio * 0.9 - 0.05, animOptions);
 
       focusedTaa = nearest;
 
