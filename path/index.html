@@ -63,10 +63,6 @@
       return nearest;
     };
     
-    //var wheelText = space.createText('Tap to solve')
-    //  .size(22, 10) // Size of text block in the space.
-    //  .fontSize(4) // Size of the font in the space
-    //  .moveBy(0, 0); // Position of the text in the space. Default is (0, 0)
     
     // http://stackoverflow.com/a/20307010/638546
     var mask = function (background, foreground) {
@@ -98,11 +94,12 @@
       taa.size( 10,10 );
       var side = Math.floor( Math.sqrt(71) );
       taa.moveBy(0, 10 * i);
-      /*taa.on('tap', function (ev) {
-        taa.pivot(taa.center()); // pivot is not scaled TODO BUG
-        taa.scale(1.2);
+      taa.on('tap', function (ev) {
+        taa.pivot(taa.center());
         
-        //vp.focusTo(taa, 0.613, animOptions);
+        vp.pivot(vp.center());
+        vp.moveTo(taa.center(), animOptions);
+
         focusedTaa = taa;
 
         ev.bubbles = false;
@@ -111,10 +108,6 @@
         ev.gesture.preventDefault();
         return false;
       });
-      taa.on('hold', function (ev) {
-        taa.pivot(taa.center()); // pivot is not scaled TODO BUG
-        taa.scale(1/1.2);
-      });*/
     });
     
     
@@ -159,15 +152,8 @@
       return false;
     });
 
-    // By default, scale the viewport so that all the elements in
-    // the space are visible.
     vp.focusTo(focusedTaa, 0.2);
     
-    
-    
-    //r11.on('tap', function () {
-    //  swap(r11);
-    //});
   }());
   </script>
 </body>
